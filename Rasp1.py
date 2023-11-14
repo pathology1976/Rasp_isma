@@ -1,18 +1,21 @@
 import pandas as pd
-from datetime import datetime, time
+from datetime import datetime
+import arrow 
 
-rasp = pd.read_excel("rasp.xlsx")
+rasp = pd.read_csv("rasp.csv", sep="\t")
 
-group = input("Какой твой номер группы (введи только цифры): ")
+group = int(input("Какой твой номер группы (введи только цифры): "))
 current_datetime = datetime.now()
 current_day = current_datetime.strftime("%A")
-current_time = current_datetime.time()
+current_time = now.format("HH:mm:ss")
+print(current_day)
+print(current_time)
 
 current_lesson = rasp[
     (rasp['group'] == group) & 
     (rasp['day'] == current_day) & 
-    (rasp['start_time'] <= current_time) & 
-    (rasp['finish_time'] >= current_time)
+    (rasp['start_time'] <= (current_time)) & 
+    (rasp['finish_time'] >= (current_time))
 ]
 
 if not current_lesson.empty:
